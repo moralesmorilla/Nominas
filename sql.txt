@@ -1,0 +1,45 @@
+DROP DATABASE IF EXISTS nominas;
+CREATE DATABASE nominas CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE nominas;
+
+CREATE TABLE Empleados (
+  dni        VARCHAR(9)   NOT NULL,
+  nombre     VARCHAR(100) NOT NULL,
+  sexo       CHAR(1)      NOT NULL,
+  categoria  INT          NOT NULL,
+  anyos      INT          NOT NULL,
+  PRIMARY KEY (dni),
+  CONSTRAINT chk_categoria CHECK (categoria BETWEEN 1 AND 10),
+  CONSTRAINT chk_anyos CHECK (anyos >= 0),
+  CONSTRAINT chk_sexo CHECK (sexo IN ('M', 'F'))
+);
+
+CREATE TABLE Nominas (
+  dni     VARCHAR(9) NOT NULL,
+  sueldo  INT        NOT NULL,
+  PRIMARY KEY (dni),
+  CONSTRAINT fk_nominas_empleados FOREIGN KEY (dni) REFERENCES Empleados(dni)
+    ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+INSERT INTO Empleados (dni, nombre, sexo, categoria, anyos) VALUES
+  ('32000032G', 'James Cosling',   'M', 9, 7),
+  ('32000031R', 'Ada Lovelace',    'F', 1, 1),
+  ('12345678Z', 'Grace Hopper',    'F', 3, 10),
+  ('87654321X', 'Alan Turing',     'M', 5, 4),
+  ('11223344B', 'Linus Torvalds',  'M', 7, 15),
+  ('44556677C', 'Margaret Hamilton','F', 2, 0),
+  ('99887766A', 'Dennis Ritchie',  'M', 10, 20),
+  ('55667788D', 'Barbara Liskov',  'F', 4, 2),
+  ('22334455E', 'Ken Thompson',    'M', 6, 8);
+
+INSERT INTO Nominas (dni, sueldo) VALUES
+  ('32000032G', 245000),
+  ('32000031R',  55000),
+  ('12345678Z', 130000 + 5000 * 10),
+  ('87654321X', 170000 + 5000 * 4),
+  ('11223344B', 210000 + 5000 * 15),
+  ('44556677C',  70000 + 5000 * 0),
+  ('99887766A', 230000 + 5000 * 20),
+  ('55667788D', 110000 + 5000 * 2),
+  ('22334455E', 190000 + 5000 * 8);

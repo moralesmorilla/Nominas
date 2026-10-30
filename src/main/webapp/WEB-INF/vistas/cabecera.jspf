@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gestión de Empleados</title>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+</head>
+<body>
+<header>
+  <h1>Gestion de Empleados</h1>
+  <nav><a href="${pageContext.request.contextPath}/index.html">Inicio</a></nav>
+</header>
+<main>
