@@ -2,7 +2,8 @@
 <%@ include file="/WEB-INF/vistas/cabecera.jspf" %>
 
 <h2>Buscar empleados</h2>
-<form class="formulario" action="${pageContext.request.contextPath}/buscar" method="get">
+<form class="formulario" action="${pageContext.request.contextPath}/controlador" method="get">
+  <input type="hidden" name="accion" value="buscar">
   <label for="criterio">Buscar por:</label>
   <select id="criterio" name="criterio" required>
     <option value="dni">DNI</option>

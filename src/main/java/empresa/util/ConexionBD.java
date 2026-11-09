@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 public final class ConexionBD {
 
+    private static final ConexionBD INSTANCIA = new ConexionBD();
     private static final String URL =
             "jdbc:mysql://localhost:3307/nominas?serverTimezone=Europe/Madrid&allowPublicKeyRetrieval=true&useSSL=false";
     private static final String USUARIO = "root";
@@ -21,7 +22,11 @@ public final class ConexionBD {
     private ConexionBD() {
     }
 
-    public static Connection obtener() throws SQLException {
+    public static ConexionBD getInstancia() {
+        return INSTANCIA;
+    }
+
+    public Connection obtenerConexion() throws SQLException {
         return DriverManager.getConnection(URL, USUARIO, PASSWORD);
     }
 }

@@ -2,7 +2,8 @@
 <%@ include file="/WEB-INF/vistas/cabecera.jspf" %>
 
 <h2>Consultar salario</h2>
-<form class="formulario" action="${pageContext.request.contextPath}/salario" method="get">
+<form class="formulario" action="${pageContext.request.contextPath}/controlador" method="get">
+  <input type="hidden" name="accion" value="salario">
   <label for="dni">DNI del empleado:</label>
   <input type="text" id="dni" name="dni" maxlength="9" required
          pattern="\d{8}[A-Za-z]" placeholder="32000032G" title="8 dígitos y una letra">
